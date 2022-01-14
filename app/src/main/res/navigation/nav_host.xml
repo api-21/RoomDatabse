@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_host"
+    app:startDestination="@id/showAllUsers">
+
+    <fragment
+        android:id="@+id/showAllUsers"
+        android:name="com.xpresscure.roomdatabse.ShowAllUsers"
+        android:label="fragment_show_all_users"
+        tools:layout="@layout/fragment_show_all_users" >
+        <action
+            android:id="@+id/action_showAllUsers_to_createUsers"
+            app:destination="@id/createUsers" />
+        <action
+            android:id="@+id/action_showAllUsers_to_deleteUsers"
+            app:destination="@id/deleteUsers" />
+    </fragment>
+    <fragment
+        android:id="@+id/createUsers"
+        android:name="com.xpresscure.roomdatabse.CreateUsers"
+        android:label="fragment_create_users"
+        tools:layout="@layout/fragment_create_users" >
+        <action
+            android:id="@+id/action_createUsers_to_showAllUsers"
+            app:destination="@id/showAllUsers" />
+    </fragment>
+    <fragment
+        android:id="@+id/deleteUsers"
+        android:name="com.xpresscure.roomdatabse.DeleteUsers"
+        android:label="fragment_delete_users"
+        tools:layout="@layout/fragment_delete_users" >
+        <argument
+            android:name="currentUsers"
+            app:argType="com.xpresscure.roomdatabse.LocalStorage.Others.Models.Users" />
+        <action
+            android:id="@+id/action_deleteUsers_to_showAllUsers"
+            app:destination="@id/showAllUsers" />
+    </fragment>
+</navigation>
