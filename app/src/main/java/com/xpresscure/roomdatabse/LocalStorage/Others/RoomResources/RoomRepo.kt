@@ -3,6 +3,7 @@ package com.xpresscure.roomdatabse.LocalStorage.Others.RoomResources
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.xpresscure.roomdatabse.LocalStorage.Others.Models.Users
+import com.xpresscure.roomdatabse.LocalStorage.RoomDi.ConsultationCollection
 import javax.inject.Inject
 
 class RoomRepo @Inject constructor(val roomDao: RoomDao) {
@@ -16,5 +17,7 @@ class RoomRepo @Inject constructor(val roomDao: RoomDao) {
     suspend fun deleteCurrentUser(users: Users) = roomDao.deleteUsers(users)
 
     suspend fun updateCurrentUsers(users: Users) = roomDao.updateUsers(users)
+
+    suspend fun insertConsult(consultation : ConsultationCollection) = roomDao.insertConsult(consultation)
 
 }

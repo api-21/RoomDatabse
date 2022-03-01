@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.xpresscure.roomdatabse.LocalStorage.Others.Models.Users
+import com.xpresscure.roomdatabse.LocalStorage.RoomDi.ConsultationCollection
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -37,6 +38,12 @@ class RoomViewModel @Inject constructor(val roomRepo: RoomRepo) : ViewModel() {
     fun deleteAllUsers() {
         viewModelScope.launch(Dispatchers.IO) {
             roomRepo.deleteAllUsers()
+        }
+    }
+
+    fun insertConsultdata(consultation : ConsultationCollection){
+        viewModelScope.launch (Dispatchers.IO){
+            roomRepo.insertConsult(consultation)
         }
     }
 

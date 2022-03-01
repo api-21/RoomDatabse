@@ -3,6 +3,7 @@ package com.xpresscure.roomdatabse.LocalStorage.Others.RoomResources
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.xpresscure.roomdatabse.LocalStorage.Others.Models.Users
+import com.xpresscure.roomdatabse.LocalStorage.RoomDi.ConsultationCollection
 
 @Dao
 interface RoomDao {
@@ -21,5 +22,8 @@ interface RoomDao {
 
     @Query("DELETE FROM user_details")
     suspend fun deleteAllUsers()
+
+    @Insert
+    suspend fun insertConsult(consultation : ConsultationCollection)
 
 }

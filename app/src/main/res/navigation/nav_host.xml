@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_showAllUsers_to_deleteUsers"
             app:destination="@id/deleteUsers" />
+        <action
+            android:id="@+id/action_showAllUsers_to_consultDataLyt"
+            app:destination="@id/consultDataLyt" />
     </fragment>
     <fragment
         android:id="@+id/createUsers"
@@ -28,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/deleteUsers"
-        android:name="com.xpresscure.roomdatabse.DeleteUsers"
+        android:name="com.xpresscure.roomdatabse.UpdateDeleteUsers"
         android:label="fragment_delete_users"
         tools:layout="@layout/fragment_delete_users" >
         <argument
@@ -38,4 +41,9 @@
             android:id="@+id/action_deleteUsers_to_showAllUsers"
             app:destination="@id/showAllUsers" />
     </fragment>
+    <fragment
+        android:id="@+id/consultDataLyt"
+        android:name="com.xpresscure.roomdatabse.ConsultDataLyt"
+        android:label="fragment_consult_data_lyt"
+        tools:layout="@layout/fragment_consult_data_lyt" />
 </navigation>

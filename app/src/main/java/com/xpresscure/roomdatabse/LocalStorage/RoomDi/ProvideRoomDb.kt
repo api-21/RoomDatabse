@@ -2,6 +2,8 @@ package com.xpresscure.roomdatabse.LocalStorage.RoomDi
 
 import android.content.Context
 import androidx.room.Room
+import androidx.room.TypeConverter
+import androidx.room.TypeConverters
 import com.xpresscure.roomdatabse.LocalStorage.Others.RoomResources.RoomDao
 import com.xpresscure.roomdatabse.LocalStorage.Others.RoomResources.RoomDatabaseInstance
 import dagger.Module

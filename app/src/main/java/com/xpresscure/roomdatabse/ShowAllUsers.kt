@@ -33,7 +33,7 @@ class ShowAllUsers : Fragment() {
         setHasOptionsMenu(true)
 
         binding.addUsers.setOnClickListener {
-            findNavController().navigate(R.id.action_showAllUsers_to_createUsers)
+            findNavController().navigate(R.id.action_showAllUsers_to_consultDataLyt)
         }
 
         getAllUsers()

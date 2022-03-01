@@ -10,6 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.xpresscure.roomdatabse.LocalStorage.Others.Models.Users
 import com.xpresscure.roomdatabse.LocalStorage.Others.RoomResources.RoomViewModel
+import com.xpresscure.roomdatabse.databinding.ButtonLytBinding
+import com.xpresscure.roomdatabse.databinding.EdtLytBinding
 import com.xpresscure.roomdatabse.databinding.FragmentCreateUsersBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,6 +20,11 @@ class CreateUsers : Fragment() {
 
     lateinit var binding: FragmentCreateUsersBinding
     private val mainViewModel: RoomViewModel by viewModels()
+
+    private lateinit var userName : EdtLytBinding
+    private lateinit var userAddress : EdtLytBinding
+    private lateinit var btnAddUser : ButtonLytBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,9 +38,26 @@ class CreateUsers : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
 
-        binding.addUsers.setOnClickListener {
-            val name = binding.edtUsername.text.toString()
-            val village = binding.edtUserVillage.text.toString()
+        userName = EdtLytBinding.inflate(layoutInflater)
+        userAddress = EdtLytBinding.inflate(layoutInflater)
+        btnAddUser = ButtonLytBinding.inflate(layoutInflater)
+
+//        binding.createUserLyt.addView(userName.edtLyt)
+//        binding.createUserLyt.addView(userAddress.edtLyt)
+//        binding.createUserLyt.addView(btnAddUser.btnLyt)
+
+        binding.createUserLyt.addView(userName.edtLyt)
+        userName.edtLytEdt.hint ="Enter Your Name Here"
+
+        binding.createUserLyt.addView(userAddress.edtLyt)
+        userAddress.edtLytEdt.hint ="Enter Your Address"
+
+        binding.createUserLyt.addView(btnAddUser.btnLyt)
+        btnAddUser.btnLyt.text ="Add New User"
+
+        btnAddUser.btnLyt.setOnClickListener {
+            val name = userName.edtLytEdt.text.toString()
+            val village = userAddress.edtLytEdt.text.toString()
             if (validatee(name, village)) addUsersToRoom(name, village)
         }
 
@@ -43,7 +67,6 @@ class CreateUsers : Fragment() {
         mainViewModel.createUser(users)
         findNavController().navigate(R.id.action_createUsers_to_showAllUsers)
     }
-
     private fun validatee(name: String, village: String): Boolean {
         if (name.isNullOrEmpty() && village.isNullOrEmpty()) {
             return false

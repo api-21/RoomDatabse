@@ -10,6 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.xpresscure.roomdatabse.LocalStorage.Others.Models.Users
 import com.xpresscure.roomdatabse.LocalStorage.Others.RoomResources.RoomViewModel
+import com.xpresscure.roomdatabse.databinding.ButtonLytBinding
+import com.xpresscure.roomdatabse.databinding.EdtLytBinding
 import com.xpresscure.roomdatabse.databinding.FragmentDeleteUsersBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_delete_users.*
@@ -18,6 +20,11 @@ import kotlinx.android.synthetic.main.fragment_delete_users.*
 class UpdateDeleteUsers : Fragment() {
     lateinit var binding: FragmentDeleteUsersBinding
     private val mainViewModel: RoomViewModel by viewModels()
+
+    private lateinit var userName : EdtLytBinding
+    private lateinit var userAddress : EdtLytBinding
+    private lateinit var btnUpdateUser : ButtonLytBinding
+    private lateinit var btnDeleteUser : ButtonLytBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,16 +37,31 @@ class UpdateDeleteUsers : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val name = binding.edtUUsername.text.toString()
-        val village = binding.edtUUserVillage.text.toString()
+
+        userName = EdtLytBinding.inflate(layoutInflater)
+        userName.edtLytEdt.hint ="Username"
+        userAddress = EdtLytBinding.inflate(layoutInflater)
+        userAddress.edtLytEdt.hint ="User Address"
+        btnDeleteUser = ButtonLytBinding.inflate(layoutInflater)
+        btnDeleteUser.btnLyt.text ="Delete User"
+        btnUpdateUser = ButtonLytBinding.inflate(layoutInflater)
+        btnUpdateUser.btnLyt.text ="Update User"
+
+        binding.updateLyt.addView(userName.edtLyt)
+        binding.updateLyt.addView(userAddress.edtLyt)
+        binding.updateLyt.addView(btnUpdateUser.btnLyt)
+        binding.updateLyt.addView(btnDeleteUser.btnLyt)
+
+        val name = userName.edtLytEdt.text.toString()
+        val village = userAddress.edtLytEdt.text.toString()
         val users = Users(0, name, village)
 
-        binding.addUpdate.setOnClickListener {
+        btnUpdateUser.btnLyt.setOnClickListener {
             if (validatee(name, village)) updateUser(users)
             findNavController().navigate(R.id.action_deleteUsers_to_showAllUsers)
         }
 
-        binding.btnDelete.setOnClickListener {
+       btnDeleteUser.btnLyt.setOnClickListener {
             if (validatee(name, village)) deleteUsers(users)
             findNavController().navigate(R.id.action_deleteUsers_to_showAllUsers)
         }
