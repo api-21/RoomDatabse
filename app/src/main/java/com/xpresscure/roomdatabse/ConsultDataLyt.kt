@@ -1,6 +1,7 @@
 package com.xpresscure.roomdatabse
 
 import android.os.Bundle
+import android.service.autofill.UserData
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil.inflate
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+import com.xpresscure.roomdatabse.LocalStorage.Others.Models.HobbiesItem
 import com.xpresscure.roomdatabse.LocalStorage.Others.RoomResources.RoomViewModel
 import com.xpresscure.roomdatabse.LocalStorage.RoomDi.*
 import com.xpresscure.roomdatabse.databinding.*
@@ -45,58 +47,15 @@ class ConsultDataLyt : Fragment() {
 
         btnAddDataToLocal.btnLyt.setOnClickListener {
 
-
-            val doctorChatList = arrayListOf(
-                DoctorChatArray("messageOne", "53", "Patient", "image", "abhinash", "1", "22", "22"),
-                DoctorChatArray("messageOne", "53", "Patient", "image", "abhinash", "1", "22", "22"),
-                DoctorChatArray("messageOne", "53", "Patient", "image", "abhinash", "1", "22", "22"),
-                DoctorChatArray("messageOne", "53", "Patient", "image", "abhinash", "1", "22", "22")
+            val hobbies = mutableListOf(
+                HobbiesItem("item1"),
+                HobbiesItem("item2"),
+                HobbiesItem("item3"),
+                HobbiesItem("item4"),
+                HobbiesItem("item5")
             )
-
-            val callDurationList = arrayListOf(
-                CallLogsArray("", 1, "1", "23", "23", 1,"Abhinash Singh"),
-                CallLogsArray("", 1, "1", "23", "23", 1,"Abhinash Singh"),
-                CallLogsArray("", 1, "1", "23", "23", 1,"Abhinash Singh"),
-                CallLogsArray("", 1, "1", "23", "23", 1,"Abhinash Singh")
-            )
-
-            val followUpData = arrayListOf(
-                FollowUpArray("12", "P0", "12", "56", "56", callDurationList, "56"),
-                FollowUpArray("12", "P0", "12", "56", "56", callDurationList, "56"),
-                FollowUpArray("12", "P0", "12", "56", "56", callDurationList, "56"),
-                FollowUpArray("12", "P0", "12", "56", "56", callDurationList, "56")
-            )
-
-            val consultaionOne = arrayListOf(
-
-                ConsultationData(
-                    "1234",
-                    "abhi@123",
-                    "12",
-                    "Abhinash Singh",
-                    "image",
-                    "S0",
-                    "P0",
-                    "Complete",
-                    "53",
-                    "53",
-                    "53000",
-                    "S0",
-                    1,
-                    1,
-                    "0",
-                    doctorChatList,
-                    followUpData,
-                    callDurationList,
-                    "83",
-                    "83",
-                    "83",
-                    "83"
-                )
-            )
-
-            val data = ConsultationCollection(0, consultaionOne)
-            roomVm.insertConsultdata(data)
+            val userData = com.xpresscure.roomdatabse.LocalStorage.Others.Models.UserData("",hobbies)
+            roomVm.insertUserData(userData)
 
         }
 

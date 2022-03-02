@@ -1,7 +1,9 @@
 package com.xpresscure.roomdatabse
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil.inflate
 import androidx.fragment.app.viewModels
@@ -12,6 +14,7 @@ import com.xpresscure.roomdatabse.LocalStorage.Others.Adapter.UsersListAdapter
 import com.xpresscure.roomdatabse.LocalStorage.Others.RoomResources.RoomViewModel
 import com.xpresscure.roomdatabse.databinding.FragmentShowAllUsersBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_show_all_users.*
 
 @AndroidEntryPoint
 class ShowAllUsers : Fragment() {
@@ -40,14 +43,28 @@ class ShowAllUsers : Fragment() {
 
     }
 
+
+
     private fun getAllUsers() {
 
-        mainViewModel.usersList.observeForever {
-            val adapter = UsersListAdapter(it)
-            binding.mainRCV.adapter = adapter
-            binding.mainRCV.layoutManager = LinearLayoutManager(context)
-            adapter.notifyDataSetChanged()
+        mainViewModel.getUserData.observeForever {
+            for(i in it){
+                for (h in i.Hobbies){
+                    Toast.makeText(context, "${h.item}", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+
         }
+
+//        mainViewModel.usersList.observeForever {
+//            val adapter = UsersListAdapter(it)
+//            binding.mainRCV.adapter = adapter
+//            binding.mainRCV.layoutManager = LinearLayoutManager(context)
+//            adapter.notifyDataSetChanged()
+//        }
+
+
 
     }
 
